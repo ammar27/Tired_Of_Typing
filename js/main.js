@@ -5,12 +5,10 @@ var mode = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.short
 var client;
 var request;
 var fileList = $("#fileItem")[0];
-$(document).on('ready', function () {
-    fileList.addEventListener("change", function () {
-        processFile(function (file) {
-            console.log("finished processing");
-            start(file);
-        });
+fileList.addEventListener("change", function () {
+    processFile(function (file) {
+        console.log("finished processing");
+        start(file);
     });
 });
 function processFile(callback) {

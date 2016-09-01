@@ -9,15 +9,13 @@
   var request : any;
 
   var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
-  
-$(document).on('ready', function() {
+
   fileList.addEventListener("change", function() {
     processFile(function (file) {
       console.log("finished processing");
       start(file);
     });
   });
-});
 
 function processFile(callback) : void {
   var file = fileList.files[0];  //get(0) is required as imgSelector is a jQuery object so to get the DOM object, its the first item in the object. files[0] refers to the location of the photo we just chose.
