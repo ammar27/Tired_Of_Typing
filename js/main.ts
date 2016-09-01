@@ -2,7 +2,7 @@ var start_btn = $("#start")[0];
 var stop_btn = $("#stop")[0];
 var subscription: string = "b9ae29e86b0d42a7b7c2185cd566d57d";
 
-var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.longDictation;
+var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
 var client : any;
 var request : any;
 
