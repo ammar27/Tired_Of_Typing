@@ -44,7 +44,7 @@ function start(file): void {
   request = new XMLHttpRequest();
   request.open(
       'GET',
-      "../whatstheweatherlike.wav",
+      file.name,
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {

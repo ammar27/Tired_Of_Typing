@@ -34,7 +34,7 @@ function start(file) {
     console.log("Starting " + file.name);
     client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(mode, "en-us", subscription, subscription);
     request = new XMLHttpRequest();
-    request.open('GET', "../whatstheweatherlike.wav", true);
+    request.open('GET', file.name, true);
     request.responseType = 'arraybuffer';
     request.onload = function () {
         if (request.status == 200) {
