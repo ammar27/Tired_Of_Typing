@@ -1,9 +1,10 @@
-#mainNav {
-  background-color: #2C3E50;
+.body {
+  background-color: #e6e6e6;
 }
 
-#title {
-  color: white;
+#mainNav {
+  background-color: #2C3E50;
+  margin-bottom: 50px;
 }
 
 .navbar-custom .navbar-nav li a {
@@ -12,4 +13,22 @@
 
 .navbar-custom .navbar-nav li a:hover {
   color: #18BC9C;
+}
+
+#title {
+  color: white;
+}
+
+#body-container {
+  padding-top: 80px;
+}
+
+h4 {
+  text-align: center;
+}
+
+textarea {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
