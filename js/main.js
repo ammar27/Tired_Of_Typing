@@ -9,7 +9,7 @@ function start() {
     console.log("Starting");
     client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(mode, "en-us", subscription, subscription);
     request = new XMLHttpRequest();
-    request.open('GET', "../whatstheweatherlike", true);
+    request.open('GET', "../whatstheweatherlike.wav", true);
     request.responseType = 'arraybuffer';
     request.onload = function () {
         if (request.status == 200) {

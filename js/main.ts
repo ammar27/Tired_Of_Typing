@@ -19,7 +19,7 @@ function start(): void {
   request = new XMLHttpRequest();
   request.open(
       'GET',
-      "../whatstheweatherlike",
+      "../whatstheweatherlike.wav",
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {
