@@ -44,7 +44,7 @@ function start(file): void {
   request = new XMLHttpRequest();
   request.open(
       'GET',
-      file,
+      file.value,
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {

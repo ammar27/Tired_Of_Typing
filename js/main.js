@@ -34,7 +34,7 @@ function start(file) {
     console.log("Starting");
     client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(mode, "en-us", subscription, subscription);
     request = new XMLHttpRequest();
-    request.open('GET', file, true);
+    request.open('GET', file.value, true);
     request.responseType = 'arraybuffer';
     request.onload = function () {
         if (request.status == 200) {
