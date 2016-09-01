@@ -1,0 +1,15 @@
+#mainNav {
+  background-color: #2C3E50;
+}
+
+#title {
+  color: white;
+}
+
+.navbar-custom .navbar-nav li a {
+  color: white;
+}
+
+.navbar-custom .navbar-nav li a:hover {
+  color: #18BC9C;
+}
