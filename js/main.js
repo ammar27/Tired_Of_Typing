@@ -1,6 +1,4 @@
 var fileList = $("#fileItem")[0];
-var start_btn = $("#start")[0];
-var stop_btn = $("#stop")[0];
 var subscription = "b9ae29e86b0d42a7b7c2185cd566d57d";
 var mode = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
 var client;
@@ -62,7 +60,4 @@ function clearOutput() {
 function setOutput(output) {
     console.log("Setting to: " + output);
     document.getElementById("output").value = output;
-}
-function stop() {
-    console.log("worked");
 }

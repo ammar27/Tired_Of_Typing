@@ -1,6 +1,4 @@
 var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
-var start_btn = $("#start")[0];
-var stop_btn = $("#stop")[0];
 var subscription: string = "b9ae29e86b0d42a7b7c2185cd566d57d";
 // Possible error due to "Microsoft" not being found, but compiles into js and works
 var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
@@ -77,8 +75,4 @@ function clearOutput():void {
 function setOutput(output:string):void {
   console.log("Setting to: " + output);
   (<HTMLInputElement> document.getElementById("output")).value = output;
-}
-
-function stop(): void {
-  console.log("worked");
 }
