@@ -34,7 +34,7 @@ function processFile(callback) : void {
 
 function start(file): void {
   clearOutput();
-  console.log("Starting " + file);
+  console.log("Starting " + file.name);
   client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(
       mode,
       "en-us",
