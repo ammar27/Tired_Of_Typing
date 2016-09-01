@@ -1,21 +1,18 @@
+var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
+var start_btn = $("#start")[0];
+var stop_btn = $("#stop")[0];
+var subscription: string = "b9ae29e86b0d42a7b7c2185cd566d57d";
+// Possible error due to "Microsoft" not being found, but compiles into js and works
+var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
+var client : any;
+var request : any;
 
-  var start_btn = $("#start")[0];
-  var stop_btn = $("#stop")[0];
-  var subscription: string = "b9ae29e86b0d42a7b7c2185cd566d57d";
-
-  // Possible error due to "Microsoft" not being found, but compiles into js and works
-  var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
-  var client : any;
-  var request : any;
-
-  var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
-
-  fileList.addEventListener("change", function() {
-    processFile(function (file) {
-      console.log("finished processing");
-      start(file);
-    });
+fileList.addEventListener("change", function() {
+  processFile(function (file) {
+    console.log("finished processing");
+    start(file);
   });
+});
 
 function processFile(callback) : void {
   var file = fileList.files[0];  //get(0) is required as imgSelector is a jQuery object so to get the DOM object, its the first item in the object. files[0] refers to the location of the photo we just chose.
