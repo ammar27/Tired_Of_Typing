@@ -7,11 +7,19 @@ var request;
 function start() {
     clearOutput();
     console.log("Starting");
-    client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createMicrophoneClient(mode, "en-us", subscription, subscription);
-    client.startMicAndRecognition();
-    setTimeout(function () {
-        client.endMicAndRecognition();
-    }, 5000);
+    client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(mode, "en-us", subscription, subscription);
+    request = new XMLHttpRequest();
+    request.open('GET', (mode == Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase) ? "../whatstheweatherlike.wav" : "../batman.wav", true);
+    request.responseType = 'arraybuffer';
+    request.onload = function () {
+        if (request.status !== 200) {
+            setOutput("unable to receive audio file");
+        }
+        else {
+            client.sendAudio(request.response, request.response.length);
+        }
+    };
+    request.send();
     client.onPartialResponseReceived = function (response) {
         console.log("partial response: " + response);
         setOutput(response);
