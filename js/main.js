@@ -4,12 +4,37 @@ var subscription = "b9ae29e86b0d42a7b7c2185cd566d57d";
 var mode = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
 var client;
 var request;
-function start() {
+var fileList = $("#fileItem")[0];
+fileList.addEventListener("change", function () {
+    processFile(function (file) {
+        console.log("finished processing");
+        start(file);
+    });
+});
+function processFile(callback) {
+    var file = fileList.files[0];
+    var reader = new FileReader();
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+    else {
+        console.log("Invalid file");
+    }
+    reader.onloadend = function () {
+        if (!file.name.match(/\.(wav)$/)) {
+            console.log("Please upload a wav file");
+        }
+        else {
+            callback(file);
+        }
+    };
+}
+function start(file) {
     clearOutput();
     console.log("Starting");
     client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(mode, "en-us", subscription, subscription);
     request = new XMLHttpRequest();
-    request.open('GET', "../whatstheweatherlike.wav", true);
+    request.open('GET', file, true);
     request.responseType = 'arraybuffer';
     request.onload = function () {
         if (request.status == 200) {
@@ -39,4 +64,5 @@ function setOutput(output) {
     document.getElementById("output").value = output;
 }
 function stop() {
+    console.log("worked");
 }

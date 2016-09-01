@@ -2,14 +2,41 @@ var start_btn = $("#start")[0];
 var stop_btn = $("#stop")[0];
 var subscription: string = "b9ae29e86b0d42a7b7c2185cd566d57d";
 
+  // Possible error due to "Microsoft" not being found, but compiles into js and works
 var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
 var client : any;
 var request : any;
 
-function start(): void {
+var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
+
+fileList.addEventListener("change", function() {
+  processFile(function (file) {
+    console.log("finished processing");
+    start(file);
+  });
+});
+
+function processFile(callback) : void {
+  var file = fileList.files[0];  //get(0) is required as imgSelector is a jQuery object so to get the DOM object, its the first item in the object. files[0] refers to the location of the photo we just chose.
+  var reader = new FileReader();
+  if (file) {
+    reader.readAsDataURL(file); //used to read the contents of the file
+  } else {
+    console.log("Invalid file");
+  }
+  reader.onloadend = function () {
+    if (!file.name.match(/\.(wav)$/)){
+      console.log("Please upload a wav file");
+    } else {
+      //if file is wav it sends the file reference back up
+      callback(file);
+    }
+  }
+}
+
+function start(file): void {
   clearOutput();
   console.log("Starting");
-  // Possible error due to "Microsoft" not being found, but compiles into js and works
   client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(
       mode,
       "en-us",
@@ -19,7 +46,7 @@ function start(): void {
   request = new XMLHttpRequest();
   request.open(
       'GET',
-      "../whatstheweatherlike.wav",
+      file,
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {
@@ -55,5 +82,5 @@ function setOutput(output:string):void {
 }
 
 function stop(): void {
-
+  console.log("worked");
 }
