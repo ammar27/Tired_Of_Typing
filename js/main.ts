@@ -22,10 +22,13 @@ function start(): void {
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {
-      if (request.status !== 200) {
-          setOutput("unable to receive audio file");
+      if (request.status == 200) {
+        client.sendAudio(request.response, request.response.length);
+        console.log(request.response.length);
+      } else if (request.status == 503){
+        setOutput("Unable to receive audio file");
       } else {
-          client.sendAudio(request.response, request.response.length);
+        setOutput("Unable to receive audio file");
       }
   };
 
@@ -38,7 +41,8 @@ function start(): void {
 
   client.onFinalResponseReceived = function (response) {
     console.log("final response: " + response);
-      setOutput(JSON.stringify(response));
+
+    setOutput(JSON.stringify(response));
   }
 
   client.onIntentReceived = function (response) {
