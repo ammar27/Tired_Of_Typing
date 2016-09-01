@@ -34,7 +34,7 @@ function processFile(callback) : void {
 
 function start(file): void {
   clearOutput();
-  console.log("Starting");
+  console.log("Starting " + file);
   client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(
       mode,
       "en-us",
@@ -44,7 +44,7 @@ function start(file): void {
   request = new XMLHttpRequest();
   request.open(
       'GET',
-      file.value,
+      "../whatstheweatherlike.wav",
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {
