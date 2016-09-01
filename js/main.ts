@@ -1,4 +1,3 @@
-$(document).on('ready', function() {
 
   var start_btn = $("#start")[0];
   var stop_btn = $("#stop")[0];
@@ -10,7 +9,8 @@ $(document).on('ready', function() {
   var request : any;
 
   var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
-
+  
+$(document).on('ready', function() {
   fileList.addEventListener("change", function() {
     processFile(function (file) {
       console.log("finished processing");
