@@ -18,13 +18,12 @@ function start(): void {
   request = new XMLHttpRequest();
   request.open(
       'GET',
-      (mode == Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase) ? "../whatstheweatherlike.wav" : "../batman.wav",
+      "../batman.wav",
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {
       if (request.status == 200) {
         client.sendAudio(request.response, request.response.length);
-        console.log(request.response.length);
       } else if (request.status == 503){
         setOutput("Unable to receive audio file");
       } else {
