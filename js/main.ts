@@ -1,18 +1,21 @@
-var start_btn = $("#start")[0];
-var stop_btn = $("#stop")[0];
-var subscription: string = "b9ae29e86b0d42a7b7c2185cd566d57d";
+$(document).on('ready', function() {
+
+  var start_btn = $("#start")[0];
+  var stop_btn = $("#stop")[0];
+  var subscription: string = "b9ae29e86b0d42a7b7c2185cd566d57d";
 
   // Possible error due to "Microsoft" not being found, but compiles into js and works
-var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
-var client : any;
-var request : any;
+  var mode : any = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
+  var client : any;
+  var request : any;
 
-var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
+  var fileList : HTMLInputElement = <HTMLInputElement> $("#fileItem")[0];
 
-fileList.addEventListener("change", function() {
-  processFile(function (file) {
-    console.log("finished processing");
-    start(file);
+  fileList.addEventListener("change", function() {
+    processFile(function (file) {
+      console.log("finished processing");
+      start(file);
+    });
   });
 });
 

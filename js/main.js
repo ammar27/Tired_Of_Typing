@@ -1,14 +1,16 @@
-var start_btn = $("#start")[0];
-var stop_btn = $("#stop")[0];
-var subscription = "b9ae29e86b0d42a7b7c2185cd566d57d";
-var mode = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
-var client;
-var request;
-var fileList = $("#fileItem")[0];
-fileList.addEventListener("change", function () {
-    processFile(function (file) {
-        console.log("finished processing");
-        start(file);
+$(document).on('ready', function () {
+    var start_btn = $("#start")[0];
+    var stop_btn = $("#stop")[0];
+    var subscription = "b9ae29e86b0d42a7b7c2185cd566d57d";
+    var mode = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionMode.shortPhrase;
+    var client;
+    var request;
+    var fileList = $("#fileItem")[0];
+    fileList.addEventListener("change", function () {
+        processFile(function (file) {
+            console.log("finished processing");
+            start(file);
+        });
     });
 });
 function processFile(callback) {
