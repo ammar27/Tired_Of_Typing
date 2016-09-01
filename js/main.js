@@ -9,7 +9,7 @@ function start() {
     console.log("Starting");
     client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(mode, "en-us", subscription, subscription);
     request = new XMLHttpRequest();
-    request.open('GET', "../batman.wav", true);
+    request.open('GET', "../whatstheweatherlike", true);
     request.responseType = 'arraybuffer';
     request.onload = function () {
         if (request.status == 200) {
@@ -23,10 +23,6 @@ function start() {
         }
     };
     request.send();
-    client.onPartialResponseReceived = function (response) {
-        console.log("partial response: " + response);
-        setOutput(response);
-    };
     client.onFinalResponseReceived = function (response) {
         console.log("final response: " + response);
         setOutput(JSON.stringify(response));
@@ -43,6 +39,4 @@ function setOutput(output) {
     document.getElementById("output").value = output;
 }
 function stop() {
-    console.log("Stopping");
-    client.endMicAndRecognition();
 }

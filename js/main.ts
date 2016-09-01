@@ -9,6 +9,7 @@ var request : any;
 function start(): void {
   clearOutput();
   console.log("Starting");
+  // Possible error due to "Microsoft" not being found, but compiles into js and works
   client = Microsoft.ProjectOxford.SpeechRecognition.SpeechRecognitionServiceFactory.createDataClient(
       mode,
       "en-us",
@@ -18,7 +19,7 @@ function start(): void {
   request = new XMLHttpRequest();
   request.open(
       'GET',
-      "../batman.wav",
+      "../whatstheweatherlike",
       true);
   request.responseType = 'arraybuffer';
   request.onload = function () {
@@ -33,21 +34,14 @@ function start(): void {
 
   request.send();
 
-  client.onPartialResponseReceived = function (response) {
-      console.log("partial response: " + response);
-      setOutput(response);
-  }
-
   client.onFinalResponseReceived = function (response) {
     console.log("final response: " + response);
-
     setOutput(JSON.stringify(response));
   }
 
   client.onIntentReceived = function (response) {
-      setOutput(response);
+    setOutput(response);
   };
-
 
 }
 
@@ -61,6 +55,5 @@ function setOutput(output:string):void {
 }
 
 function stop(): void {
-  console.log("Stopping");
-  client.endMicAndRecognition();
+
 }
